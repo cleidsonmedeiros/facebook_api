@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     before_action :set_post, except: [:create, :update]
-    before_action :set_comment, only: [:update]
+    before_action :set_comment, only: [:update, :destroy]
 
     def create
 
@@ -28,6 +28,12 @@ class CommentsController < ApplicationController
         else
             render json: { errors: @comment.errors }, status: :unprocessable_entity
         end
+
+    end
+
+    def destroy
+
+        @comment.destroy
 
     end
 

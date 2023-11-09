@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
         @post = Post.order(created_at: :desc)
         render json: @post
-        
+
     end
 
     def create
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
         if @post.save
             render json: @post, status: :created
         else
-            render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: @post.errors }, status: :unprocessable_entity
         end
 
     end
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
         if @post.save
             render json: @post
         else
-            render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: @post.errors }, status: :unprocessable_entity
         end
 
     end

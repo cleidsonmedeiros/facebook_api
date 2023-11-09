@@ -21,7 +21,14 @@ Rails.application.routes.draw do
 
   put 'posts/comments/:comment_id', to: 'comments#update'
 
+  delete 'posts/comments/:comment_id', to: 'comment#destroy'
+
   post 'posts/comments', to: 'comments#create'
+
+
+
+
+  post 'posts/likes', to: 'likes#create'
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
