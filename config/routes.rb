@@ -5,14 +5,16 @@ Rails.application.routes.draw do
 
   post 'posts', to: 'posts#create'
 
-  delete 'posts/:id', to: 'posts#destroy'
+  delete 'posts/:post_id', to: 'posts#destroy'
 
-  put 'posts/:id', to: 'posts#update'
+  put 'posts/:post_id', to: 'posts#update'
 
 
 
 
   post 'images', to: 'images#create'
+
+  delete 'images/:image_id', to: 'images#destroy'
 
 
 
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
 
 
   post 'user/:user_id/posts/:post_id/likes', to: 'likes#create'
+
+  delete 'user/:user_id/posts/:post_id/likes', to: 'likes#destroy'
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

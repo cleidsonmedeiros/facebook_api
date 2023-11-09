@@ -7,7 +7,17 @@ class LikesController < ApplicationController
         if @like.save
             render json: @like
         else
-            render json: { errors: @like.errors }, status: :created
+            render json: { errors: @like.errors }, status: :unprocessable_entity
+        end
+
+    end
+
+    def destroy
+
+        if @like.destroy
+            render json: @like, status: :ok
+        else
+            render json: { errors: @like.errors }, status: :unprocessable_entity
         end
 
     end
@@ -15,11 +25,15 @@ class LikesController < ApplicationController
     private
 
     def set_user
+
         @user = User.find(params[:user_id])
+
     end
 
     def set_post
+
         @post = Post.find(params[:post_id])
+
     end
 
 end
