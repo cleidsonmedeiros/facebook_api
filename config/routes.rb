@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
 
 
-  post 'posts/likes', to: 'likes#create'
+  post 'user/:user_id/posts/:post_id/likes', to: 'likes#create'
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
