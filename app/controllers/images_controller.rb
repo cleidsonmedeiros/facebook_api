@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
         if @image.save
             render json: @image, status: :created
         else
-            render json: { errors: @person.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: @person.errors }, status: :unprocessable_entity
         end
 
     end

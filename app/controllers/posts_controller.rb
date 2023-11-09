@@ -2,19 +2,21 @@ class PostsController < ApplicationController
     before_action :set_post, except: [:create, :index]
 
     def index
-        @post = Post.order(created_at: :desc)
 
+        @post = Post.order(created_at: :desc)
         render json: @post
+        
     end
 
     def create
-        @post = Post.new(post_params)
 
+        @post = Post.new(post_params)
         if @post.save
             render json: @post, status: :created
         else
             render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
+
     end
 
     def destroy
@@ -23,14 +25,15 @@ class PostsController < ApplicationController
 
     end
 
-    def edit
-        @post.update(post_params)
+    def update
 
+        @post.update(post_params)
         if @post.save
             render json: @post
         else
             render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
+
     end
 
     private
@@ -42,10 +45,12 @@ class PostsController < ApplicationController
     end
 
     def post_params
+
         params.permit(
             :desc,
             :image_id
         )
+        
     end
 
 end
