@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   root to: "posts#index"
 
+
+
+  ##POSTS
+
   post 'posts', to: 'posts#create'
 
   delete 'posts/:post_id', to: 'posts#destroy'
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
 
 
 
+  ##IMAGES
 
   post 'images', to: 'images#create'
 
@@ -18,6 +23,7 @@ Rails.application.routes.draw do
 
 
 
+  ##COMMENTS
 
   get 'posts/:post_id/comments', to: 'comments#index'
 
@@ -25,10 +31,11 @@ Rails.application.routes.draw do
 
   delete 'posts/comments/:comment_id', to: 'comment#destroy'
 
-  post 'posts/comments', to: 'comments#create'
+  post 'user/:user_id/posts/:post_id/comments', to: 'comments#create'
 
 
 
+  ##LIKES
 
   post 'user/:user_id/posts/:post_id/likes', to: 'likes#create'
 

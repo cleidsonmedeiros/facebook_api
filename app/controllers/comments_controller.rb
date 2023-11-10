@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-    before_action :set_post, except: [:create, :update]
+    before_action :set_post, only: [:index, :create]
     before_action :set_comment, only: [:update, :destroy]
+    before_action :set_user, only: [:create]
 
     def create
 
-        @comment = Comment.new(comment_params)
+        @comment = Comment.new(user_id: @user.id, post_id: @post.id, text: comment_params[:text])
 
         if @comment.save
             render json: @comment, status: :created
@@ -23,7 +24,7 @@ class CommentsController < ApplicationController
 
     def update
 
-        if @comment.update(text: params[:text])
+        if @comment.update(comment_params)
             render json: @comment, status: :ok
         else
             render json: { errors: @comment.errors }, status: :unprocessable_entity
@@ -43,6 +44,12 @@ class CommentsController < ApplicationController
 
     private
 
+    def set_user
+
+        @user = User.find(params[:user_id])
+
+    end
+
     def set_comment
 
         @comment = Comment.find(params[:comment_id])
@@ -58,8 +65,6 @@ class CommentsController < ApplicationController
     def comment_params
 
         params.permit(
-            :user_id,
-            :post_id,
             :text
         )
 
