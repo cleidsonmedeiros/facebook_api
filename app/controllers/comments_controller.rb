@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
     def create
 
         @comment = Comment.new(user_id: @user.id, post_id: @post.id, text: comment_params[:text])
-
         if @comment.save
             render json: @comment, status: :created
         else

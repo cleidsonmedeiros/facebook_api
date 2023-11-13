@@ -73,4 +73,10 @@ end
 
 gem "pry-rails"
 
+gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
+
+gem "rack-cors"
+
+gem 'omniauth'
+
 gem "devise", "~> 4.9"
