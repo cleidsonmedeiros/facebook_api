@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   get 'posts/:post_id/likes', to: 'likes#likes_count_post'
 
+  get 'posts/:post_id/comments/:comment_id/likes', to: 'likes#likes_count_comment'
+
   post 'user/:user_id/posts/:post_id/likes', to: 'likes#liked_post'
 
   delete 'user/:user_id/posts/:post_id/likes', to: 'likes#destroy'

@@ -1,8 +1,8 @@
 class LikesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user, only: [:liked_post, :liked_comment]
-    before_action :set_post, only: [:liked_post, :liked_comment, :likes_count_post]
-    before_action :set_comment, only: [:liked_comment]
+    before_action :set_post, only: [:liked_post, :liked_comment, :likes_count_post, :likes_count_comment]
+    before_action :set_comment, only: [:liked_comment, :likes_count_comment]
 
     def liked_post
 
@@ -29,6 +29,14 @@ class LikesController < ApplicationController
     def likes_count_post
 
         @like_count = Like.where(comment_id: nil).count
+
+        render json: @like_count
+
+    end
+
+    def likes_count_comment
+
+        @like_count = Like.where(post_id: @post.id, comment_id: @comment.id).where.not(comment_id: nil).count
 
         render json: @like_count
 
