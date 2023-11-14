@@ -1,12 +1,11 @@
 class LikesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_user, only: [:liked_post, :liked_comment]
     before_action :set_post, only: [:liked_post, :liked_comment, :likes_count_post, :likes_count_comment]
     before_action :set_comment, only: [:liked_comment, :likes_count_comment]
 
     def liked_post
 
-        @like = Like.new(user_id: @user.id, post_id: @post.id)
+        @like = Like.new(user_id: current_user.id, post_id: @post.id)
         if @like.save
             render json: @like
         else
@@ -17,7 +16,7 @@ class LikesController < ApplicationController
 
     def liked_comment
 
-        @like = Like.new(user_id: @user.id, post_id: @post.id, comment_id: @comment.id)
+        @like = Like.new(user_id: current_user.id, post_id: @post.id, comment_id: @comment.id)
         if @like.save
             render json: @like
         else
@@ -53,12 +52,6 @@ class LikesController < ApplicationController
     end
 
     private
-
-    def set_user
-
-        @user = User.find(params[:user_id])
-
-    end
 
     def set_comment
 

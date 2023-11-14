@@ -2,11 +2,10 @@ class CommentsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_post, only: [:index, :create]
     before_action :set_comment, only: [:update, :destroy]
-    before_action :set_user, only: [:create]
 
     def create
 
-        @comment = Comment.new(user_id: @user.id, post_id: @post.id, text: comment_params[:text])
+        @comment = Comment.new(user_id: current_user.id, post_id: @post.id, text: comment_params[:text])
         if @comment.save
             render json: @comment, status: :created
         else
@@ -43,12 +42,6 @@ class CommentsController < ApplicationController
     end
 
     private
-
-    def set_user
-
-        @user = User.find(params[:user_id])
-
-    end
 
     def set_comment
 
