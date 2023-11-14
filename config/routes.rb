@@ -42,9 +42,13 @@ Rails.application.routes.draw do
 
   ##LIKES
 
-  post 'user/:user_id/posts/:post_id/likes', to: 'likes#create'
+  get 'posts/:post_id/likes', to: 'likes#likes_count_post'
+
+  post 'user/:user_id/posts/:post_id/likes', to: 'likes#liked_post'
 
   delete 'user/:user_id/posts/:post_id/likes', to: 'likes#destroy'
+
+  post 'user/:user_id/posts/:post_id/comments/:comment_id/likes', to: 'likes#liked_comment'
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
