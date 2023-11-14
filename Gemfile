@@ -71,12 +71,10 @@ group :test do
 
 end
 
-gem "pry-rails"
+gem 'pry-rails'
 
-gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth"
+gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 
-gem "rack-cors"
+gem 'devise'
 
-gem 'omniauth'
-
-gem "devise", "~> 4.9"
+gem 'rack-cors', :require => 'rack/cors'
