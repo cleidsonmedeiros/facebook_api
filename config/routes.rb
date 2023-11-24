@@ -20,14 +20,6 @@ Rails.application.routes.draw do
 
 
 
-  ##IMAGES
-
-  post 'images', to: 'images#create'
-
-  delete 'images/:image_id', to: 'images#destroy'
-
-
-
   ##COMMENTS
 
   get 'posts/:post_id/comments', to: 'comments#index'

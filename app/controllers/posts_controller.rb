@@ -11,8 +11,23 @@ class PostsController < ApplicationController
 
     def create
 
-        @post = Post.new(post_params)
+        @post = Post.new(post_params.except(:images))
+
+        
+
         if @post.save
+
+            image_urls = params[:post][:images]
+
+            if image_urls
+                image_urls.each do |image_url|
+
+                    downloaded_image = URI.open(image_url)
+                    
+                    @post.images.attach(io: downloaded_image, filename: File.basename(downloaded_image.path))
+                 end
+            end
+
             render json: @post, status: :created
         else
             render json: { errors: @post.errors }, status: :unprocessable_entity
@@ -53,7 +68,7 @@ class PostsController < ApplicationController
 
         params.permit(
             :desc,
-            :image_id
+            images: []
         )
         
     end
