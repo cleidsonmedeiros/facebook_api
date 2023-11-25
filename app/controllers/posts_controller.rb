@@ -11,20 +11,16 @@ class PostsController < ApplicationController
 
     def create
 
-        @post = Post.new(post_params.except(:images))
-
-        
+        @post = Post.new(post_params)
 
         if @post.save
-
-            image_urls = params[:post][:images]
+            image_urls = params[:images]
 
             if image_urls
                 image_urls.each do |image_url|
-
                     downloaded_image = URI.open(image_url)
-                    
-                    @post.images.attach(io: downloaded_image, filename: File.basename(downloaded_image.path))
+
+                    @post.image.attach(io: downloaded_image, filename: File.basename(downloaded_image.path))
                  end
             end
 
@@ -37,22 +33,18 @@ class PostsController < ApplicationController
 
     def destroy
 
-        if @post.destroy
-            render json: @post, status: :ok
-        else
-            render json: { errors: @post.errors }, status: :unprocessable_entity
-        end
+        @post.destroy
+        render json: @post, status: :ok
 
     end
 
     def update
 
-        @post.update(post_params)
-        if @post.save
+        if @post.update(post_params)
             render json: @post
-        else
+          else
             render json: { errors: @post.errors }, status: :unprocessable_entity
-        end
+          end
 
     end
 
@@ -65,12 +57,10 @@ class PostsController < ApplicationController
     end
 
     def post_params
-
         params.permit(
             :desc,
             images: []
         )
-        
     end
 
 end

@@ -40,8 +40,6 @@ Rails.application.routes.draw do
 
   post 'user/:user_id/posts/:post_id/likes', to: 'likes#liked_post'
 
-  delete 'user/:user_id/posts/:post_id/likes', to: 'likes#destroy'
-
   post 'user/:user_id/posts/:post_id/comments/:comment_id/likes', to: 'likes#liked_comment'
   
 

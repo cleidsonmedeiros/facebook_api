@@ -41,16 +41,6 @@ class LikesController < ApplicationController
 
     end
 
-    def destroy
-
-        if @like.destroy
-            render json: @like, status: :ok
-        else
-            render json: { errors: @like.errors }, status: :unprocessable_entity
-        end
-
-    end
-
     private
 
     def set_comment

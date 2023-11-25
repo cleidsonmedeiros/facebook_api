@@ -262,7 +262,7 @@ DEPENDENCIES
   debug
   devise
   devise_token_auth!
-  image_processing (~> 1.2)
+  image_processing
   importmap-rails
   jbuilder
   open-uri
