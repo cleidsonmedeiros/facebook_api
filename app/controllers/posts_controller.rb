@@ -16,12 +16,10 @@ class PostsController < ApplicationController
         if @post.save
             image_urls = params[:images]
 
-            if image_urls
-                image_urls.each do |image_url|
-                    downloaded_image = URI.open(image_url)
+            image_urls.each do |image_url|
+                downloaded_image = URI.open(image_url)
 
-                    @post.image.attach(io: downloaded_image, filename: File.basename(downloaded_image.path))
-                 end
+                @post.image.attach(io: downloaded_image, filename: File.basename(downloaded_image.path))
             end
 
             render json: @post, status: :created
