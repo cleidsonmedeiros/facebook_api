@@ -1,24 +1,28 @@
-# README
+# Facebook Replica API (2004) - Readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+Welcome to the Facebook Replica API (2004) for study purposes. This API replicates basic functionalities of the early version of Facebook from the year 2004. It is intended for educational purposes to help developers understand the fundamental concepts behind building a social media platform.
 
-* Ruby version
+## Table of Contents
 
-* System dependencies
+1. [Getting Started](#getting-started)
+2. [Authentication](#authentication)
+3. [Endpoints](#endpoints)
+   - [Posts](#posts)
+   - [Comments](#comments)
+   - [Likes](#likes)
+4. [Sample Requests](#sample-requests)
+5. [Dependencies](#dependencies)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-* Configuration
+## Getting Started
 
-* Database creation
+To get started with the Facebook Replica API, follow these steps:
 
-* Database initialization
+1. Clone the repository:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+   ```bash
+   git clone https://github.com/yourusername/facebook-replica-api.git
+   cd facebook-replica-api

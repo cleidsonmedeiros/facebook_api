@@ -257,12 +257,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activestorage
   bootsnap
   capybara
   debug
   devise
   devise_token_auth!
-  image_processing
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   open-uri
